@@ -13,7 +13,7 @@ Q3: What is the difference between spot instances and reserved instances?
 Ans: Amazon Spot instances allow you to bid on spare EC2 computing capacity for a discount in price. The Spot instances are terminated when the bid price is lower than the real-time spot price
      Amazon Reserved instances require either 1 or 3 year commitment for capacity reservation. And the discount automatically applies when the on-demand instances are run with matching 
      attributes (instance type, scope, tenancy, platform). The suggested use cases for Spot and Reserved instances are different - SI is for applicationes with flexible start/end times and
-     RI is for applications with steady state usage and customers that can commited to using EC2 over a 1 or 3 year term
+     RI is for applications with steady state usage and customers that are commited to using EC2 over a 1 or 3 year term
 
 Q4: List the names of four software packages installed in the UCB AMI
 
