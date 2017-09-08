@@ -1,0 +1,20 @@
+1. List the HPFD contens of /user
+
+Found 8 items
+drwxr-xr-x   - mapred  supergroup          0 2017-09-08 20:43 /user/history
+drwxrwxrwx   - hive    supergroup          0 2017-09-08 20:43 /user/hive
+drwxrwxrwx   - hue     supergroup          0 2017-09-08 20:44 /user/hue
+drwxrwxrwx   - jenkins supergroup          0 2017-09-08 20:43 /user/jenkins
+drwxrwxrwx   - oozie   supergroup          0 2017-09-08 20:44 /user/oozie
+drwxrwxrwx   - root    supergroup          0 2017-09-08 20:43 /user/root
+drwxr-xr-x   - hdfs    supergroup          0 2017-09-08 20:45 /user/spark
+drwxr-xr-x   - w205    supergroup          0 2017-09-08 20:49 /user/w205
+
+2. Q1: How many live datanodes are there?
+   Ans: 1
+
+   Q2: How much non-DFS storage is used?
+   Ans: 5.10 GB
+
+   Q3: How much DFS storage is used?
+   Ans: 136.87 MB
