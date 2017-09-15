@@ -74,7 +74,7 @@ Queries outputs:
                         last_updated BEFORE UPDATE ON customer FOR EACH ROW EXECUTE PROCEDURE last_updated()
 )
 
-Q3: What similarities do you see in the explain plains for these 3 queries?
+Q3: What similarities do you see in the explain plans for these 3 queries?
 
 Queries outputs:
 (
