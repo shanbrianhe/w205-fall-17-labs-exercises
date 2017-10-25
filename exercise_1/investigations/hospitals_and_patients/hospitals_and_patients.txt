@@ -2,16 +2,46 @@ Investigation 4: Are average scores for hospital quality or procedural variabili
 
 Results -
 
-        For average scores, they are slightly (correlation coefficient = 0.30) positively correlated to the scores
+Case 1: With all procedures considered (timely and effective care + readmissions):
+
+        For average scores, they are positively correlated (correlation coefficient = 0.30) to the scores
         in the patients survey responses
 
-        For procedural variability, they are slightly (correlation coefficient = -0.23) negatively correlated to
+        For procedural variability, they are negatively correlated (correlation coefficient = -0.23) to
         the scores in the patients survey responses
+
+Case 2: With only hospital timely and effective care procedures considered:
+
+        For average scores, they are positively correlated (correlation coefficient = 0.24) to the scores
+        in the patients survey responses (less correlated than case 1)
+
+        For procedural variability, they are negatively correlated (correlation coefficient = -0.14) to
+        the scores in the patients survey responses. (less correlated than case 1)
+
+Case 3: With only readmission and mortality rates considered:
+
+        For average scores, they are positively correlated (correlation coefficient = 0.23) to the scores
+        in the patients survey responses (less correlated than case 1)
+
+        For procedural variability, they are negatively correlated (correlation coefficient = -0.29) to
+        the scores in the patients survey responses. (more correlated than case 1)
 
 Procedures -
 
         Referring to http://www.hcahpsonline.org/files/HCAHPS%20Fact%20Sheet%20May%202012.pdf, the effective measure
 of the rating for each hospital is the sum of hcahps_base_score (out of 80) and hcahps_consistency_score (out of 20).
+
         I then calculated the correlation coefficients between 1) the average compare_scores and hcahps total score
 (hcahps_base_score + hcahps_consistency_score) and 2) the standard deviation of compare_scores and hcahps total score,
 using the formula corr(X, Y) = [E(XY)-E(X)*E(Y)] / [STDDEV(X) * STDDEV(Y)].
+
+        I did the analyses for three different scenarios: 1) with all procedures (timely & effective care + readmission)
+considered, 2) with only timely & effective care procedures considered and 3) with only readmission procedure considered.
+So that we can further exploit how different types of procedures correlate to patients' feedback.
+
+Conclusions -
+
+        For all scenarios, I see positive correlations between the average scores and patients' ratings and
+negative correlations between the procedural variability and patients' ratings, which is expected. Furthermore, the positive
+correlation for average score is the highest with all procedures combined while the variability of readmission procedures
+has the strongest negative correlation with patients' feedback.

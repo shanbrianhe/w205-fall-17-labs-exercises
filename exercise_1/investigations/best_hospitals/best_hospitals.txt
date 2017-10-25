@@ -1,22 +1,24 @@
 Investigation 1: What hospitals are models of high-quality care?
+
 Results -
 
 Top 10 Hospitals:
 
-          +-----------+--------------------------------------+--------------+-----------------+
-          |provider_id|hospital_name                         |num_of_measure|avg_compare_score|
-          +-----------+--------------------------------------+--------------+-----------------+
-          |420087     |ROPER HOSPITAL                        |40            |7.025            |
-          |420104     |MOUNT PLEASANT HOSPITAL               |30            |6.933            |
-          |370215     |OKLAHOMA HEART HOSPITAL               |33            |6.909            |
-          |420065     |BON SECOURS-ST FRANCIS XAVIER HOSPITAL|34            |6.882            |
-          |670025     |THE HEART HOSPITAL BAYLOR PLANO       |24            |6.792            |
-          |151323     |PARKVIEW LAGRANGE HOSPITAL            |23            |6.783            |
-          |50424      |SCRIPPS GREEN HOSPITAL                |32            |6.781            |
-          |260006     |HEARTLAND REGIONAL MEDICAL CENTER     |39            |6.769            |
-          |390138     |WAYNESBORO HOSPITAL                   |34            |6.765            |
-          |390057     |GRAND VIEW HOSPITAL                   |38            |6.763            |
-          +-----------+--------------------------------------+--------------+-----------------+
+                +-----------+--------------------------------------+--------------+-----------------+
+                |provider_id|hospital_name                         |num_of_measure|avg_compare_score|
+                +-----------+--------------------------------------+--------------+-----------------+
+                |420087     |Roper Hospital                        |40            |7.025            |
+                |420104     |Mount Pleasant Hospital               |30            |6.933            |
+                |370215     |Oklahoma Heart Hospital               |33            |6.909            |
+                |420065     |Bon Secours-st Francis Xavier Hospital|34            |6.882            |
+                |670025     |The Heart Hospital Baylor Plano       |24            |6.792            |
+                |151323     |Parkview Lagrange Hospital            |23            |6.783            |
+                |50424      |Scripps Green Hospital                |32            |6.781            |
+                |260006     |Heartland Regional Medical Center     |39            |6.769            |
+                |390138     |Waynesboro Hospital                   |34            |6.765            |
+                |390057     |Grand View Hospital                   |38            |6.763            |
+                +-----------+--------------------------------------+--------------+-----------------+
+
 
 Procedures -
 
@@ -68,3 +70,8 @@ at least 21 measures (out of 41 applicable measures, ~50%) recorded so that the 
 high-quality care for a variety of procedures.
         With that in mind, I came up with the list above ranking the top 10 hospitals with the highest average standardized measure
 scores across at least 21 applicable measures.
+
+Conclusions -
+
+        Roger Hospital leads the nation in terms of providing high-quality care, with consistent high scores in 40 applicable
+measures. These are the top 10 hospitals that show consistent high-quality care in a variety of procedures. 

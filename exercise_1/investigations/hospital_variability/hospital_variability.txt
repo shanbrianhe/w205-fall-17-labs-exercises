@@ -4,20 +4,20 @@ Results -
 
 10 Procedures/Measures with Highest Variability:
 
-        +------------+--------------------------------------------------------------------------------+--------------+------------------+-------------+-----------------+
-        |measure_id  |measure_name                                                                    |num_of_measure|standard_deviation|average_score|std_to_mean_ratio|
-        +------------+--------------------------------------------------------------------------------+--------------+------------------+-------------+-----------------+
-        |PC_01       |Elective Delivery                                                               |2520          |6.958             |4.233        |1.644            |
-        |VTE_6       |Hospital Acquired Potentially-Preventable Venous Thromboembolism                |1388          |8.062             |6.347        |1.27             |
-        |OP_22       |Patient left without being seen                                                 |3206          |1.717             |1.7          |1.01             |
-        |OP_5        |Median Time to ECG                                                              |2099          |6.109             |8.333        |0.733            |
-        |ED_2B       |Admit Decision Time to ED Departure Time for Admitted Patients                  |3496          |62.167            |98.519       |0.631            |
-        |OP_20       |Median Time from ED Arrival to Provider Contact for ED patients                 |3354          |16.882            |28.082       |0.601            |
-        |ED_1B       |Median Time from ED Arrival to ED Departure for Admitted ED Patients            |3516          |92.832            |271.607      |0.342            |
-        |OP_21       |Median Time to Pain Management for Long Bone Fracture                           |3172          |17.722            |55.357       |0.32             |
-        |OP_18B      |Median Time from ED Arrival to ED Departure for Discharged ED Patients          |3340          |40.722            |142.799      |0.285            |
-        |MORT_30_CABG|30-Day All-Cause Mortality Following Coronary Artery Bypass Graft (CABG) Surgery|1061          |0.841             |3.315        |0.254            |
-        +------------+--------------------------------------------------------------------------------+--------------+------------------+-------------+-----------------+
+            +------------+--------------------------------------------------------------------------------+---------------+------------------+-------------+-----------------+
+            |measure_id  |measure_name                                                                    |num_of_hospital|standard_deviation|average_score|std_to_mean_ratio|
+            +------------+--------------------------------------------------------------------------------+---------------+------------------+-------------+-----------------+
+            |PC_01       |Elective Delivery                                                               |2520           |6.958             |4.233        |1.644            |
+            |VTE_6       |Hospital Acquired Potentially-Preventable Venous Thromboembolism                |1388           |8.062             |6.347        |1.27             |
+            |OP_22       |Patient left without being seen                                                 |3206           |1.717             |1.7          |1.01             |
+            |OP_5        |Median Time to ECG                                                              |2099           |6.109             |8.333        |0.733            |
+            |ED_2B       |Admit Decision Time to ED Departure Time for Admitted Patients                  |3496           |62.167            |98.519       |0.631            |
+            |OP_20       |Median Time from ED Arrival to Provider Contact for ED patients                 |3354           |16.882            |28.082       |0.601            |
+            |ED_1B       |Median Time from ED Arrival to ED Departure for Admitted ED Patients            |3516           |92.832            |271.607      |0.342            |
+            |OP_21       |Median Time to Pain Management for Long Bone Fracture                           |3172           |17.722            |55.357       |0.32             |
+            |OP_18B      |Median Time from ED Arrival to ED Departure for Discharged ED Patients          |3340           |40.722            |142.799      |0.285            |
+            |MORT_30_CABG|30-Day All-Cause Mortality Following Coronary Artery Bypass Graft (CABG) Surgery|1061           |0.841             |3.315        |0.254            |
+            +------------+--------------------------------------------------------------------------------+---------------+------------------+-------------+-----------------+
 
 Procedures -
 
@@ -26,3 +26,11 @@ of the raw scores, they don't reflect the actual variability of the raw scores. 
 measure scores to compare the variability of different measures across hospitals.
         Because measure scores have different scales, I calculated the ratio of standard deviation over mean
 for the scores as measurements of their variability across different hospitals.
+        I included the number of hospitals sampled to ensure an adequate sample size for our comparison. And as
+we can see, they are all above 1,000.
+
+Conclusions -
+
+        The analysis gives us the results listed above with Elective Delivery being the most inconsistent procedure
+across hospitals. And 9 out of 10 procedures with the highest variability are timely and effective care procedures.
+But please keep in mind that the number of hospitals sampled might affect the ranking that we see.

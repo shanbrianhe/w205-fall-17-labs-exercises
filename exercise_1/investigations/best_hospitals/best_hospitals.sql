@@ -219,8 +219,8 @@ create table tmp_measure_lkp as
 select x.measure_id,
        x.measure_name,
        case when x.measure_id in ('AMI_10', 'AMI_2', 'EDV', 'HF_2', 'HF_3','OP_6', 'OP_7','PN_6', 'STK_1','VTE_1', 'VTE_2', 'VTE_3', 'VTE_4', 'SCIP_INF_2') then 'NA'
-            when x.measure_id in ('AMI_8A', 'HF_1', 'IMM_2', 'IMM_3_FAC_ADHPCT', 'OP_4', 'VTE_5') or (x.measure_id like 'SCIP%' and x.measure_id <> 'SCIP_INF_2') or (x.measure_id like 'STK_%' and x.measure_id <> 'STK_1')  or (x.table = 'readmission_t') then '+'
-            else '-' end measure_flag
+            when x.measure_id in ('AMI_8A', 'HF_1', 'IMM_2', 'IMM_3_FAC_ADHPCT', 'OP_4', 'VTE_5') or (x.measure_id like 'SCIP%' and x.measure_id <> 'SCIP_INF_2') or (x.measure_id like 'STK_%' and x.measure_id <> 'STK_1') then '+'
+            else '-' end measure_flag -- according to understanding from https://www.medicare.gov/hospitalcompare/Data/Data-Updated.html
 from
 (
   select a.measure_id, b.measure_name, 'effective_care_t' as table
@@ -316,6 +316,21 @@ left join tmp_measure_lkp b
 on a.measure_id = b.measure_id
 ;
 
+--Quality Check
+select distinct measure_flag from hospital_compare_score;
+-- +
+-- -
+
+select * from hospital_compare_score
+where measure_flag = '+'
+limit 1000
+; -- looks good
+
+select * from hospital_compare_score
+where measure_flag = '-'
+limit 100
+; -- looks good
+
 ------------------------------------------------------
 -- Compare Average Standardize Scores across hospitals
 ------------------------------------------------------
@@ -339,7 +354,7 @@ group by measure_id
 -- to find the hospital that provides consitently high-quality care, (ASSUMPTION) let's look at hospitals with at least 50% of the measures taken
 
 select a.provider_id,
-       b.hospital_name,
+       initcap(lower(b.hospital_name)) hospital_name,
        count(a.measure_id) num_of_measure,
        round(avg(a.compare_score),3) avg_compare_score
 from hospital_compare_score a
@@ -354,14 +369,14 @@ limit 10
 -- +-----------+--------------------------------------+--------------+-----------------+
 -- |provider_id|hospital_name                         |num_of_measure|avg_compare_score|
 -- +-----------+--------------------------------------+--------------+-----------------+
--- |420087     |ROPER HOSPITAL                        |40            |7.025            |
--- |420104     |MOUNT PLEASANT HOSPITAL               |30            |6.933            |
--- |370215     |OKLAHOMA HEART HOSPITAL               |33            |6.909            |
--- |420065     |BON SECOURS-ST FRANCIS XAVIER HOSPITAL|34            |6.882            |
--- |670025     |THE HEART HOSPITAL BAYLOR PLANO       |24            |6.792            |
--- |151323     |PARKVIEW LAGRANGE HOSPITAL            |23            |6.783            |
--- |50424      |SCRIPPS GREEN HOSPITAL                |32            |6.781            |
--- |260006     |HEARTLAND REGIONAL MEDICAL CENTER     |39            |6.769            |
--- |390138     |WAYNESBORO HOSPITAL                   |34            |6.765            |
--- |390057     |GRAND VIEW HOSPITAL                   |38            |6.763            |
+-- |420087     |Roper Hospital                        |40            |7.025            |
+-- |420104     |Mount Pleasant Hospital               |30            |6.933            |
+-- |370215     |Oklahoma Heart Hospital               |33            |6.909            |
+-- |420065     |Bon Secours-st Francis Xavier Hospital|34            |6.882            |
+-- |670025     |The Heart Hospital Baylor Plano       |24            |6.792            |
+-- |151323     |Parkview Lagrange Hospital            |23            |6.783            |
+-- |50424      |Scripps Green Hospital                |32            |6.781            |
+-- |260006     |Heartland Regional Medical Center     |39            |6.769            |
+-- |390138     |Waynesboro Hospital                   |34            |6.765            |
+-- |390057     |Grand View Hospital                   |38            |6.763            |
 -- +-----------+--------------------------------------+--------------+-----------------+

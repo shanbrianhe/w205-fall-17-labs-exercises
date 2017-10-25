@@ -45,7 +45,7 @@ ON upper(a.provider_id) = upper(regexp_replace(b.provider_id, '^0+', ''))
 WHERE b.provider_id is NULL
 ;
 -- an important issure here: in some tables 12345 is loaded as 12345 while in some other files, it becomes 012345. Solved by removing leading zeros
--- 330249  NULL    surveys_responses. needs to added into transformed hospitals. But since this hospital doesn't have data on effective_care or readmission, it's not very important.
+-- 330249  NULL    surveys_responses. needs to be added into transformed hospitals. But since this hospital doesn't have data on effective_care or readmission, it's not very important.
 
 -- check whether states make sense
 SELECT DISTINCT h.state, s.state

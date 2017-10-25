@@ -25,13 +25,13 @@ File/Folder Structure:
 
 loading_and_modelling/    raw_data/:                    folder that contains raw hospital compare data
                           data_for_loading/:            prepared data files for loading
-                          load_data_lake.sh:            bash file that prepares data files in local machine and load them into
+                          load_data_lake.sh:            bash script that prepares data files in local machine and loads them into
                                                         HDFS-backed data lake
                           hive_base_ddl.sql:            sql file that creates tables based on source data files, to be run in Hive
                           ERD for Hospital Compare.png: ER Diagram for transformed tables, temporary tables or tables created for calculations
                                                         in analyses are not included
 
-transformation/           table_transformation.sql:     sql file that transforms source tables to tables with needed columns for analysis,
+transformation/           table_transformation.sql:     sql file that transforms source tables to tables with needed columns for analyses,
                                                         to be run in Hive or Spark SQL
 
 investigations/           best_hospitals.sql:           sql file that analyzes the top 10 hospitals with consistent high-quality care
