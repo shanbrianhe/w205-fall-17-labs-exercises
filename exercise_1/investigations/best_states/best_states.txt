@@ -1,0 +1,27 @@
+Investigation 2: What states are models of high-quality care?
+Results -
+
+Top 10 States:
+          +-----+-------------+---------------+--------------+-----------------+
+          |state|state_name   |num_of_hospital|num_of_measure|avg_compare_score|
+          +-----+-------------+---------------+--------------+-----------------+
+          |UT   |Utah         |1021           |41            |6.071            |
+          |WI   |Wisconsin    |3167           |41            |6.012            |
+          |CO   |Colorado     |1739           |41            |6.006            |
+          |ME   |Maine        |932            |41            |5.965            |
+          |SD   |South Dakota |659            |41            |5.933            |
+          |ID   |Idaho        |615            |41            |5.846            |
+          |NH   |New Hampshire|701            |41            |5.836            |
+          |MN   |Minnesota    |2468           |41            |5.825            |
+          |MT   |Montana      |690            |41            |5.819            |
+          |NE   |Nebraska     |1178           |41            |5.807            |
+          +-----+-------------+---------------+--------------+-----------------+
+
+Procedures -
+
+          Using the standardized compare_score's computed in the previous analysis,
+I calculated the average compare_score's across all hospitals by states and ranked
+the top 10 states with the highest score.
+          I have also included the number of hospitals and distinct measures taken
+to ensure that there is no outlier skewing our data (e.g. a state with 10 hospitals
+that happen to have only 10 measures taken and scored very high).

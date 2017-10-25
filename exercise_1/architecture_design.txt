@@ -1,0 +1,48 @@
+Architecture Design
+
+List of Tables:
+
+hospitals:                source table based on Hospital General Information.csv
+hospitals_t:              transformed table from source table hospitals
+effective_care:           source table based on Timely and Effective Care - Hospital.csv
+effective_care_t:         transformed table from source table effective_care
+readmissions:             source table based on Readmissions and Deaths - Hospital.csv
+readmissions_t:           transformed table from readmissions
+measures:                 source table based on Measure Dates.csv
+measures_t:               transformed table from source table measures
+surveys_responses:        source table based on hvbp_hcahps_05_28_2015.csv
+surveys_responses_t:      transformed table from surveys_responses
+states:                   lookup table with state name and state abbreviation
+tmp_measure_lkp:          table that houses measures that have at least 1,000 hospitals sampled and a flag labelling each measure
+                          with either '+' implying the higher the better or '-' for the lower the better and 'NA' for measures that
+                          aren't defined clearly to judge which is the correct direction
+tmp_measure_score:        table that contains all the measure scores to be analyzed from effective_care_t and readmissions_t tables,
+                          their averages, and standard deviation
+hospital_compare_score:   table that contains all the measure scores for each provider and their standardized compare_score, to be used
+                          in analyses
+
+File/Folder Structure:
+
+loading_and_modelling/    raw_data/:                    folder that contains raw hospital compare data
+                          data_for_loading/:            prepared data files for loading
+                          load_data_lake.sh:            bash file that prepares data files in local machine and load them into
+                                                        HDFS-backed data lake
+                          hive_base_ddl.sql:            sql file that creates tables based on source data files, to be run in Hive
+                          ERD for Hospital Compare.png: ER Diagram for transformed tables, temporary tables or tables created for calculations
+                                                        in analyses are not included
+
+transformation/           table_transformation.sql:     sql file that transforms source tables to tables with needed columns for analysis,
+                                                        to be run in Hive or Spark SQL
+
+investigations/           best_hospitals.sql:           sql file that analyzes the top 10 hospitals with consistent high-quality care
+best_hospitals            best_hospitals.txt:           txt file that summarizes analysis approach and conclusion for best hospitals
+
+investigations/           best_states.sql:              sql file that analyzes the top 10 states with consistent high-quality care
+best_states               best_states.txt:              txt file that summarizes analysis approach and conclusion for best states
+
+investigations/           hospital_variability.sql:     sql file that analyzes the 10 procedures with highest variability across hospitals
+hospital_variability      hospital_variability.txt:     txt file that summarizes analysis approach and conclusion for hospital variability
+
+investigations/           hospitals_and_patients.sql:   sql file that analyzes the correlation between measure scores and patients's ratings
+hospitals_and_patients    hospitals_and_patients.txt:   txt file that summarizes approach and conclusion for analysis of the correlation
+                                                        between measure scores and patients's ratings

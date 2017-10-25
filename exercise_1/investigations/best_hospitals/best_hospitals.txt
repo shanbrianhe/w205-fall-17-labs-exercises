@@ -1,0 +1,70 @@
+Investigation 1: What hospitals are models of high-quality care?
+Results -
+
+Top 10 Hospitals:
+
+          +-----------+--------------------------------------+--------------+-----------------+
+          |provider_id|hospital_name                         |num_of_measure|avg_compare_score|
+          +-----------+--------------------------------------+--------------+-----------------+
+          |420087     |ROPER HOSPITAL                        |40            |7.025            |
+          |420104     |MOUNT PLEASANT HOSPITAL               |30            |6.933            |
+          |370215     |OKLAHOMA HEART HOSPITAL               |33            |6.909            |
+          |420065     |BON SECOURS-ST FRANCIS XAVIER HOSPITAL|34            |6.882            |
+          |670025     |THE HEART HOSPITAL BAYLOR PLANO       |24            |6.792            |
+          |151323     |PARKVIEW LAGRANGE HOSPITAL            |23            |6.783            |
+          |50424      |SCRIPPS GREEN HOSPITAL                |32            |6.781            |
+          |260006     |HEARTLAND REGIONAL MEDICAL CENTER     |39            |6.769            |
+          |390138     |WAYNESBORO HOSPITAL                   |34            |6.765            |
+          |390057     |GRAND VIEW HOSPITAL                   |38            |6.763            |
+          +-----------+--------------------------------------+--------------+-----------------+
+
+Procedures -
+
+In order to compare hospitals and the scores of their different procedures/measures. I followed the steps below
+1) Determine Scope of Measures
+2) Standardize Scores of Measures
+3) Compare Average Standardize Scores across Hospitals
+
+Step 1:
+        To determine the scope of measures, I first looked at the metadata for the measures (e.g. the footnote for
+scores in the effective care table) and excluded data that have discrepancies. Then I looked at the amount of scores
+taken for each measure - the majority of the measures were taken for at least 1,000 hospitals. I excluded
+the ones that were taken for fewer than 1000 hospitals (out of 4730) to ensure adequate sample sizes for the measures
+to be compared.
+
+Step 2:
+        To standardize the measure scores, I based my understanding of the measures on the following source:
+https://www.medicare.gov/hospitalcompare/Data/Data-Updated.html. I noticed that some measure scores indicate better care quality
+as they increase while some are the opposite. Hence, I created a lookup table which has the measure id, measure name and a new
+field called measure flag. Measure flag was created to label each measure with either '+' implying the higher the better or '-'
+the lower the better and 'NA' for measures that aren't defined clearly for me to judge which is the correct direction.
+        I then created a temporary table to house all the applicable measures from the effective care and readmissions tables.
+But since the scores came in with different scales and ranges, I used the following methodology to standardize them to enable
+comparison across different measures. Assuming each measure has a normal distribution, I calculated the means and standard
+deviations across all hospitals and computed their z values: (score - average score)/(sample standard deviation) when a measure
+has a flag '+' or (average score - score)/(sample standard deviation) when a measure has a flag '-'.
+
+        With their z values, I then assigned standardized compare_score to the measures as following:
+
+         ---------------------------------------
+               Z Range      |   compare_score
+         ---------------------------------------
+              Z < -2.0              1
+          -2.0 <= Z < -1.5          2
+          -1.5 <= Z < -1.0          3
+          -1.0 <= Z < -0.5          4
+          -0.5 <= Z < -0.0          5
+           0.0 <= Z < 0.5           6
+           0.5 <= Z < 1.0           7
+           1.0 <= Z < 1.5           8
+           1.5 <= Z < 2.0           9
+              Z >= 2.0              10
+
+        The standardized measure scores, centered at around 5.5, allow us to fairly compare and combine different measure scores.
+
+Step 3:
+        To find out the hospitals that are models of high-quality care, I made an assumption that the hospitals need to have
+at least 21 measures (out of 41 applicable measures, ~50%) recorded so that the we are looking at hospitals that have consistent
+high-quality care for a variety of procedures.
+        With that in mind, I came up with the list above ranking the top 10 hospitals with the highest average standardized measure
+scores across at least 21 applicable measures.

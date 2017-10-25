@@ -1,4 +1,4 @@
-#load_data_lake.sh'
+#load_data_lake.sh
 #Shan He
 
 #ReadMe
@@ -13,17 +13,11 @@ unzip Hospital_Revised_Flatfiles.zip
 #set up files for loading
 cd ..
 mkdir data_for_loading
-cp -R $1 data_for_loading/
-
-#delete the first line of all csv files
-sed -i '' '1d' *.data
-
-#rename base files
-mv Hospital\ General\ Information.csv hospitals.csv
-mv Timely\ and\ Effective\ Care\ -\ Hospital.csv effective_care.csv
-mv Readmissions\ and\ Deaths\ -\ Hospital.csv readmissions.csv
-mv Measure\ Dates.csv measures.csv
-mv surveys_responsed.csv surveys_responses.csv
+tail -n +2 $1/Hospital\ General\ Information.csv > data_for_loading/hospitals.csv
+tail -n +2 $1/Timely\ and\ Effective\ Care\ -\ Hospital.csv > data_for_loading/effective_care.csv
+tail -n +2 $1/Readmissions\ and\ Deaths\ -\ Hospital.csv > data_for_loading/readmissions.csv
+tail -n +2 $1/Measure\ Dates.csv > data_for_loading/measures.csv
+tail -n +2 $1/hvbp_hcahps_05_28_2015.csv > data_for_loading/surveys_responses.csv
 
 #log into EC2 instance
 cd $2
@@ -31,7 +25,7 @@ ssh -i foo.pem root@$3
 
 #transfer files to EC2 from local machine
 #on local machine
-scp -r -i ~/Desktop/w205/foo.pem ~/Desktop/w205/w205-fall-17-labs-exercises/exercise_1/loading_and_modelling/data_for_loading/* root@$3:/data/hospital_compare
+scp -r -i ~/Desktop/w205/foo.pem ~/Desktop/w205/w205-fall-17-labs-exercises/exercise_1/loading_and_modelling/data_for_loading/*.csv root@$3:/data/hospital_compare
 
 #create HDFS folders
 su - w205
