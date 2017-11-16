@@ -1,0 +1,38 @@
+Q1. How many rows are missing a value in the "State" column? Explain how you came up with the number.
+
+- 5377, by looking at the count for (blank) in the text facet
+
+Q2. How many rows with missing ZIP codes do you have?
+
+- 4362, investigating after using toNumber() function to convert strings to numbers.
+
+Q3. If you consider all ZIP codes less than 99999 to be valid, how many valid and invalid ZIP codes do you have, respectively?
+
+- 345175 valid and 34961 invalid zipcodes via creating another column based on zipcode5 (value < 99999)
+
+Q4. Change the radius to 3.0. What happens? Do you want to merge any of the resulting matches?
+
+- I would want to merge "California" and "Cailfornia" to "California", and "Alaska" & "alaska" to "Alaska" but not the others
+
+Q5. Change the block size to 2. Give two examples of new clusters that may be worth merging.
+
+- I would want to merge "California" and "Cailfornia" to "California", and "Alaska" & "alaska" to "Alaska"
+
+Q6. Explain in words what happens when you cluster the "place" column, and why you think that happened. What additional functionality could OpenRefine provide to possibly deal with the situation?
+
+- The system is hanging because there are too many texts for the algorithm to go through. OpenRefine can provide filter options for users to narrow down the list to be clustered.
+
+Q7. Submit a representation of the resulting matrix from the Levenshtein edit distance calculation. The resulting value should be correct.
+
+    		  1	2	3	4	5	6	7	8	9	10
+    			  G	U	M	B	A	R	R	E	L
+    1		  0	1	2	3	4	5	6	7	8	9
+    2	  G	1	0	1	2	3	4	5	6	7	8
+    3	  U	2	1	0	1	2	3	4	5	6	7
+    4	  N	3	2	1	1	2	3	4	5	6	7
+    5	  B	4	3	2	2	1	2	3	4	5	6
+    6	  A	5	4	3	3	2	1	2	3	4	5
+    7	  R	6	5	4	4	3	2	1	2	3	4
+    8	  E	7	6	5	5	4	3	2	2	2	3
+    9	  L	8	7	6	6	5	4	3	3	3	2
+    10	L	9	8	7	7	6	5	4	4	4	3
