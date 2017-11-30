@@ -1,8 +1,8 @@
-(ns tweetwordcount
+(ns extweetwordcount
   (:use     [streamparse.specs])
   (:gen-class))
 
-(defn tweetwordcount [options]
+(defn extweetwordcount [options]
    [
     ;; spout configuration
     {"tweet-spout" (python-spout-spec
@@ -22,7 +22,7 @@
           )
      "count-bolt" (python-bolt-spec
           options
-          {"parse-tweet-bolt" ["word"]}
+          {"parse-tweet-bolt" :shuffle}
           "bolts.wordcount.WordCounter"
           ["word" "count"]
           :p 2
