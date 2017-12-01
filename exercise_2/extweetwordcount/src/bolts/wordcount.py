@@ -9,48 +9,38 @@ class WordCounter(Bolt):
 
     def initialize(self, conf, ctx):
         self.counts = Counter()
+        self.conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
     def process(self, tup):
         word = tup.values[0]
 
         # Write codes to increment the word count in Postgres
         # Use psycopg to interact with Postgres
-        # Database name: Tcount 
-        # Table name: Tweetwordcount 
+        # Database name: Tcount
+        # Table name: Tweetwordcount
         # you need to create both the database and the table in advance.
-		
-        if len(sys.argv) != 2:
-   	    print "word argument is missing"
-    	    exit(1)
 
-        word = sys.argv[1]
+        #print "word is", word
 
-        print "word is", word
-
-        conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
-
-        cur = conn.cursor()
+        cur = self.conn.cursor()
 
         cur.execute("UPDATE tweetwordcount SET count = count + 1 WHERE word = %s", (word, ))
 
-        print "number of updated rows", cur.rowcount
+        #print "number of updated rows", cur.rowcount
 
         if cur.rowcount == 0:
             cur.execute("INSERT INTO tweetwordcount (word, count) VALUES (%s, 1)", (word,))
 
         conn.commit()
 
-        cur.execute("SELECT word, count from tweetwordcount")
-        records = cur.fetchall()
-        for rec in records:
-            print "word = ", rec[0]
-            print "count = ", rec[1], "\n"
+        #cur.execute("SELECT word, count from tweetwordcount")
+        #records = cur.fetchall()
+        #for rec in records:
+            #print "word = ", rec[0]
+            #print "count = ", rec[1], "\n"
 
-        conn.commit()
+        #conn.commit()
 
         # Increment the local count
         self.counts[word] += 1
         self.emit([word, self.counts[word]])
-
-        # Log the count - just to see the topology running
-        self.log('%s: %d' % (word, self.counts[word]))
