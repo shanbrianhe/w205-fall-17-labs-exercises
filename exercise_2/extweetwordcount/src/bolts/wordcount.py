@@ -12,7 +12,7 @@ class WordCounter(Bolt):
         self.conn = psycopg2.connect(database="tcount", user="postgres", password="pass", host="localhost", port="5432")
 
     def process(self, tup):
-        word = tup.values[0]
+        word = str(tup.values[0])
 
         # Write codes to increment the word count in Postgres
         # Use psycopg to interact with Postgres
@@ -31,16 +31,21 @@ class WordCounter(Bolt):
         if cur.rowcount == 0:
             cur.execute("INSERT INTO tweetwordcount (word, count) VALUES (%s, 1)", (word,))
 
-        conn.commit()
+        self.conn.commit()
 
         #cur.execute("SELECT word, count from tweetwordcount")
         #records = cur.fetchall()
         #for rec in records:
             #print "word = ", rec[0]
             #print "count = ", rec[1], "\n"
+        # Log the count - just to see the topology running
 
         #conn.commit()
 
         # Increment the local count
         self.counts[word] += 1
         self.emit([word, self.counts[word]])
+
+        # Log the count - just to see the topology running
+        self.log('%s: %d' % (word, self.counts[word]))
+
