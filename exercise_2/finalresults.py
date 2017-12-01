@@ -17,10 +17,10 @@ if len(sys.argv) == 2:
     word = sys.argv[1]
     cur.execute("SELECT count from tweetwordcount WHERE word = %s", (word, ))
     result = cur.fetchone()
-    print "Total number of occurrences of \"", word, "\":", result[0]
+    print "Total number of occurrences of \"" +  word + "\": " + str(result[0])
 
 if len(sys.argv) == 1:
-    cur.execute("SELECT word, count from tweetwordcount)
+    cur.execute("SELECT word, count from tweetwordcount ORDER BY word")
     records = cur.fetchall()
     print records
 

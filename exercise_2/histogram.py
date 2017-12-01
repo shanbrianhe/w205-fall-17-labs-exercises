@@ -18,8 +18,8 @@ cur = conn.cursor()
 cur.execute("SELECT word, count from tweetwordcount WHERE count >= %s and count <= %s ORDER BY count desc", (k1, k2))
 records = cur.fetchall()
 for rec in records:
-    print "word: ", rec[0] "\n"
-    print "count: ", rec[1], "\n"
+    print str(rec[0]) + ": " + str(rec[1])	
+
 
 conn.commit()
 conn.close()
