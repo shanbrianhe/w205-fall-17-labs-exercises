@@ -1,3 +1,5 @@
+#script to fetch streaming results
+
 import sys
 
 import psycopg2
